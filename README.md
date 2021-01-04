@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="/themed-jss.svg" size="128px">
+<img src="/themed-jss.svg" width="128">
 
 <br><br>
 
@@ -23,7 +23,7 @@ npm i themed-jss
 Features:
 - Integrates with [render-jsx](https://github.com/loreanvictor/render-jsx) & [callbag-jsx](https://github.com/loreanvictor/callbag-jsx)
 - Can be used independently or with other frameworks
-- Supports dark mode out of the box
+- Automatic dark mode support
 
 <br><br>
 
