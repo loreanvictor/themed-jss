@@ -28,7 +28,7 @@ Features:
 
 <br><br>
 
-## Usage
+# Usage
 
 Create your styles based on a _theme_:
 
@@ -66,7 +66,7 @@ const { button } = myTheme.classes(myStyles)
 const btn = document.getElementById('btn')
 btn.classList.add(button)
 ```
-[►TRY IT!](https://stackblitz.com/edit/themed-jss-demo-1?file=my-styles.ts)
+[►PLAYGROUND](https://stackblitz.com/edit/themed-jss-demo-1?file=my-styles.ts)
 
 <br>
 
@@ -87,7 +87,7 @@ myTheme.add(style(theme => ({
   }
 })))
 ```
-[►TRY IT!](https://stackblitz.com/edit/themed-jss-demo-2?file=my-styles.ts)
+[►PLAYGROUND](https://stackblitz.com/edit/themed-jss-demo-2?file=my-styles.ts)
 
 <br><br>
 
@@ -107,7 +107,7 @@ const myTheme = theme(
   }
 )
 ```
-[►TRY IT!](https://stackblitz.com/edit/themed-jss-demo-3?file=my-styles.ts)
+[►PLAYGROUND](https://stackblitz.com/edit/themed-jss-demo-3?file=my-styles.ts)
 
 <br>
 
@@ -122,9 +122,9 @@ DarkMode.initialize()
 
 btn.addEventListener('click', () => DarkMode.toggle())
 ```
-[►TRY IT!](https://stackblitz.com/edit/themed-jss-demo-3?file=my-styles.ts)
+[►PLAYGROUND](https://stackblitz.com/edit/themed-jss-demo-3?file=my-styles.ts)
 
-<br><br>
+<br>
 
 👉 `themed-jss` automatically injects additional CSS rules for properties that would change in dark mode. However, sometimes it is necessary
 to enforce some CSS properties to appear in these dark-mode rules despite them not changing between dark and light mode, for example as it would
@@ -141,3 +141,30 @@ const myStyle = style(theme => ({
   }
 }))
 ```
+
+<br>
+
+## [`render-jsx`](https://github.com/loreanvictor/render-jsx) & [`callbag-jsx`](https://loreanvictor.github.io/callbag-jsx/)
+
+The `theme()` function returns a [Component Processor](https://loreanvictor.github.io/render-jsx/docs/usage/custom-renderers/custom-component-processors#custom-component-processors) which can be plugged into any renderer:
+
+```tsx
+import { makeRenderer } from 'callbag-jsx'
+
+const renderer = makeRenderer().plug(() => myTheme)
+```
+
+Now components can use `this.theme` for accessing the theme object:
+
+```tsx
+export function MyBtn(_, renderer) {
+  const { btn } = this.theme.classes(MyBtnStyle);
+
+  return (
+    <button class={btn} onclick={() => DarkMode.toggle()}>
+      Toggle Dark Mode
+    </button>
+  )
+}
+```
+[►PLAYGROUND](https://stackblitz.com/edit/callbag-jsx-themed-jss-demo?file=my-btn.tsx)
