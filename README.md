@@ -14,6 +14,8 @@ Themed styles with JSS + Dark Mode
 
 </div>
 
+<br>
+
 ```bash
 npm i themed-jss
 ```
