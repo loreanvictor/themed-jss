@@ -1,6 +1,6 @@
 {
   "name": "themed-jss",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Themed JSS styles",
   "main": "dist/es5/index.js",
   "module": "dist/es6/index.js",
