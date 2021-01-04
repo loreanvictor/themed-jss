@@ -25,6 +25,7 @@ Features:
 - Integrates with [render-jsx](https://github.com/loreanvictor/render-jsx) & [callbag-jsx](https://github.com/loreanvictor/callbag-jsx)
 - Can be used independently or with other frameworks
 - Automatic dark mode support
+- Type safe
 
 <br><br>
 
@@ -66,7 +67,7 @@ const { button } = myTheme.classes(myStyles)
 const btn = document.getElementById('btn')
 btn.classList.add(button)
 ```
-[►PLAYGROUND](https://stackblitz.com/edit/themed-jss-demo-1?file=my-styles.ts)
+[►Playground](https://stackblitz.com/edit/themed-jss-demo-1?file=my-styles.ts)
 
 <br>
 
@@ -87,7 +88,7 @@ myTheme.add(style(theme => ({
   }
 })))
 ```
-[►PLAYGROUND](https://stackblitz.com/edit/themed-jss-demo-2?file=my-styles.ts)
+[►Playground](https://stackblitz.com/edit/themed-jss-demo-2?file=my-styles.ts)
 
 <br><br>
 
@@ -107,7 +108,7 @@ const myTheme = theme(
   }
 )
 ```
-[►PLAYGROUND](https://stackblitz.com/edit/themed-jss-demo-3?file=my-styles.ts)
+[►Playground](https://stackblitz.com/edit/themed-jss-demo-3?file=my-styles.ts)
 
 <br>
 
@@ -122,7 +123,7 @@ DarkMode.initialize()
 
 btn.addEventListener('click', () => DarkMode.toggle())
 ```
-[►PLAYGROUND](https://stackblitz.com/edit/themed-jss-demo-3?file=my-styles.ts)
+[►Playground](https://stackblitz.com/edit/themed-jss-demo-3?file=my-styles.ts)
 
 <br>
 
@@ -157,6 +158,26 @@ const renderer = makeRenderer().plug(() => myTheme)
 Now components can use `this.theme` for accessing the theme object:
 
 ```tsx
+import { style } from 'themed-jss'
+import { DarkMode } from 'themed-jss/dark-mode'
+
+
+const MyBtnStyle = style(theme => ({
+  btn: {
+    color: theme.background,
+    background: theme.text,
+    border: `2px solid ${theme.text}`,
+    padding: 8,
+    borderRadius: 3,
+    cursor: 'pointer',
+
+    '&:hover': {
+      color: theme.text,
+      background: 'transparent !darkmode',
+    }
+  }
+}))
+
 export function MyBtn(_, renderer) {
   const { btn } = this.theme.classes(MyBtnStyle);
 
@@ -167,4 +188,70 @@ export function MyBtn(_, renderer) {
   )
 }
 ```
-[►PLAYGROUND](https://stackblitz.com/edit/callbag-jsx-themed-jss-demo?file=my-btn.tsx)
+[►Playground](https://stackblitz.com/edit/callbag-jsx-themed-jss-demo?file=my-btn.tsx)
+
+<br><br>
+
+## Type Safety
+
+👉 You can specify the theme object type that a `style()` would accept:
+
+```ts
+const myStyle = style<MyThemeType>(theme => ({
+  // ...
+}))
+```
+
+👉 You can specify the theme object type that a `theme()` object should produce:
+
+```ts
+const myTheme = theme<MyThemeType>({
+  ...
+})
+```
+
+👉 You can specify the `this` argument for `render-jsx` components:
+
+```tsx
+import { ThemedComponentThis } from 'themed-jss'
+
+// ...
+
+function MyBtn(this: ThemedComponentThis, ...) {
+   // ...
+}
+```
+
+👉 You can even specify the theme type that a particular component will be expecting:
+
+```tsx
+import { ThemedComponentThis } from 'themed-jss'
+
+// ...
+
+function MyBtn(this: ThemedComponentThis<MyThemeType>, ...) {
+   // ...
+}
+```
+
+<br><br>
+
+# Contribution
+
+Be nice to each other. Here are some useful commands for development:
+
+```bash
+git clone https://github.com/loreanvictor/themed-jss.git
+```
+```bash
+npm i              # --> installs dependencies
+```
+```bash
+npm start          # --> servers `samples/index.tsx` on `localhost:3000`
+```
+```bash
+npm test           # --> runs tests
+```
+```bash
+npm run cov:view   # --> view coverage
+```
