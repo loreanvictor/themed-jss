@@ -145,7 +145,7 @@ const myStyle = style(theme => ({
 
 <br>
 
-## `render-jsx` / `callbag-jsx`
+## Render JSX / Callbag JSX
 
 👉 Themes can be plugged into `renderer`s:
 
@@ -190,6 +190,48 @@ export function MyBtn(_, renderer) {
 }
 ```
 [►Playground](https://stackblitz.com/edit/callbag-jsx-themed-jss-demo?file=my-btn.tsx)
+
+<br><br>
+
+## React
+
+You can use context API to inject themes into components:
+
+```js
+// theme-context.js
+
+import { createContext } from 'react'
+
+export const ThemeContext = createContext()
+```
+```jsx
+// my-btn.jsx
+
+const myBtnStyle = style(theme => ({ ... }))
+
+export function MyBtn() {
+  const theme = useContext(ThemeContext)
+  const {btn} = theme.classes(myBtnStyle)
+
+  return <button className={btn} onClick={() => DarkMode.toggle()}>
+    Switch Dark Mode
+  </button>
+}
+```
+```jsx
+// app.jsx
+
+DarkMode.initialize()
+
+export default function App() {
+  return (
+    <ThemeContext.Provider value={myTheme}>
+      <MyBtn/>
+    </ThemeContext.Provider>
+  )
+}
+```
+[►Playground](https://stackblitz.com/edit/react-themed-jss?file=src%2FApp.js)
 
 <br><br>
 
