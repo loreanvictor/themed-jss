@@ -1,6 +1,6 @@
 {
   "name": "themed-jss",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Themed JSS styles",
   "main": "dist/es5/index.js",
   "module": "dist/es6/index.js",
@@ -27,7 +27,8 @@
   },
   "files": [
     "dist/es6",
-    "dist/es5"
+    "dist/es5",
+    "dark-mode"
   ],
   "author": "Eugene Ghanizadeh Khoub <ghanizadeh.eugene@gmail.com>",
   "license": "MIT",
