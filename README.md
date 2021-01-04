@@ -143,7 +143,7 @@ const myStyle = style(theme => ({
 }))
 ```
 
-<br>
+<br><br>
 
 ## Render JSX / Callbag JSX
 
