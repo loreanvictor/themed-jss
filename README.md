@@ -21,11 +21,109 @@ npm i themed-jss
 ```
 
 Features:
-- Theme-based styling
+- Theme-based styling based on [JSS](https://cssinjs.org)
 - Integrates with [render-jsx](https://github.com/loreanvictor/render-jsx) & [callbag-jsx](https://github.com/loreanvictor/callbag-jsx)
 - Can be used independently or with other frameworks
 - Automatic dark mode support
 
 <br><br>
 
+## Usage
 
+Create your styles based on a _theme_:
+
+```ts
+// my-styles.ts
+
+import { style } from 'themed-jss'
+
+export const myStyles = style(theme => ({
+  button: {
+    background: theme.primaryColor,
+    color: theme.backgroundColor,
+
+    borderRadius: 3,
+    cursor: 'pointer',
+    border: 'none',
+    padding: 8,
+    fontSize: 14,
+  }
+}))
+```
+Then use a theme object to add your styles to the document:
+```ts
+import { theme } from 'themed-jss'
+import { myStyles } from './my-styles'
+
+const myTheme = theme({
+  primaryColor: '#00917c',
+  backgroundColor: 'white',
+  textColor: '#424242',
+})
+
+const { button } = myTheme.classes(myStyles)
+
+const btn = document.getElementById('btn')
+btn.classList.add(button)
+```
+[►TRY IT!](https://stackblitz.com/edit/themed-jss-demo-1?file=my-styles.ts)
+
+<br>
+
+👉 Global styles:
+```ts
+myTheme.add(style(theme => ({
+  '@global': {
+    body: {
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      width: '100vw',
+      height: '100vh',
+      padding: 0,
+      margin: 0,
+      background: theme.backgroundColor,
+    }
+  }
+})))
+```
+[►TRY IT!](https://stackblitz.com/edit/themed-jss-demo-2?file=my-styles.ts)
+
+<br><br>
+
+## Dark Mode
+Add some overrides to your theme for dark mode, `themed-jss` takes care of the rest automatically:
+```ts
+const myTheme = theme(
+  {
+    primaryColor: '#00917c',
+    backgroundColor: '#fde8cd',
+    textColor: '#424242',
+  },
+  // --> overrides for dark mode:
+  {
+    backgroundColor: '#0f3057',
+    textColor: 'white',
+  }
+)
+```
+[►TRY IT!](https://stackblitz.com/edit/themed-jss-demo-3?file=my-styles.ts)
+
+<br>
+
+👉 Dark mode by default is read from system settings. You can also assume manual control:
+
+```ts
+import { DarkMode } from 'themed-jss/dark-mode'
+
+DarkMode.initialize()
+
+// ...
+
+btn.addEventListener('click', () => DarkMode.toggle())
+```
+[►TRY IT!](https://stackblitz.com/edit/themed-jss-demo-3?file=my-styles.ts)
+<br>
+
+👉 `themed-jss` checks whether the provided theme has overrides for dark mode, and if yes, it will automatically inject
+additional CSS rules for properties that would change in dark and light mode. If you want to force a property value to re-appear in these additonal rules (for example, some `:hover` rule might otherwise take precedence), then use `!darkmode` at the end of your value.
