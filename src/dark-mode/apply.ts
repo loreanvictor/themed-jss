@@ -19,12 +19,13 @@ function applyDiff(source: Partial<Styles>, override: Partial<Styles>) {
   Object.entries(source).forEach(([key, value]) => {
     const ov = (override as any)[key];
 
+    // istanbul ignore else
     if (ov) {
       if (typeof value === 'string' || typeof value === 'number') {
         if (value !== ov) {
           dm[key] = ov;
         } else if (typeof value === 'string' && value.endsWith('!darkmode')) {
-          source[key] = dm[key] = value.substring(0, value.length - 9);
+          source[key] = dm[key] = value.substring(0, value.length - 9).trim();
         }
       } else {
         applyDiff(value as any, ov);
