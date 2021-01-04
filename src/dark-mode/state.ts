@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 import pipe from 'callbag-pipe';
 import subscribe from 'callbag-subscribe';
 import { state, State } from 'callbag-state';
@@ -26,7 +28,7 @@ export class DarkMode {
       this._system = this._query.matches ? DarkModeState.Dark : DarkModeState.Light;
       this.state.set(this._system);
     };
-    this._query.addEventListener('change', this._qlistener);
+    this._query.addListener(this._qlistener);
 
     if (localStorage.getItem('--dark-mode')) {
       this.state.set(localStorage.getItem('--dark-mode') === 'true' ? DarkModeState.Dark : DarkModeState.Light);
@@ -53,7 +55,7 @@ export class DarkMode {
   }
 
   clear() {
-    this._query.removeEventListener('change', this._qlistener);
+    this._query.removeListener(this._qlistener);
     this._sub();
   }
 
