@@ -145,17 +145,18 @@ const myStyle = style(theme => ({
 
 <br>
 
-## [`render-jsx`](https://github.com/loreanvictor/render-jsx) & [`callbag-jsx`](https://loreanvictor.github.io/callbag-jsx/)
+## `render-jsx` / `callbag-jsx`
 
-The `theme()` function returns a [Component Processor](https://loreanvictor.github.io/render-jsx/docs/usage/custom-renderers/custom-component-processors#custom-component-processors) which can be plugged into any renderer:
+👉 Themes can be plugged into `renderer`s:
 
 ```tsx
 import { makeRenderer } from 'callbag-jsx'
 
+const myTheme = theme({ ... })
 const renderer = makeRenderer().plug(() => myTheme)
 ```
 
-Now components can use `this.theme` for accessing the theme object:
+Now components can use `this.theme` for accessing the theme:
 
 ```tsx
 import { style } from 'themed-jss'
