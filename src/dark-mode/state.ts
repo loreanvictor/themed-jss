@@ -32,15 +32,15 @@ export class DarkMode {
       this.state.set(localStorage.getItem('--dark-mode') === 'true' ? DarkModeState.Dark : DarkModeState.Light);
     }
 
-    document.body.classList.add('--dark-mode-override');
+    document.body.parentElement!.classList.add('--dark-mode-override');
 
     this._sub = pipe(
       this.state,
       subscribe(mode => {
         if (mode === DarkModeState.Dark) {
-          document.body.classList.add('--dark');
+          document.body.parentElement!.classList.add('--dark');
         } else {
-          document.body.classList.remove('--dark');
+          document.body.parentElement!.classList.remove('--dark');
         }
 
         if (mode !== this._system) {

@@ -10,14 +10,6 @@ interface Theme {
 }
 
 const S = style<Theme>(_theme => ({
-  container: {
-    background: _theme.background,
-    width: '100vw',
-    height: '100vh',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
   button: {
     color: _theme.background,
     background: _theme.text,
@@ -47,9 +39,21 @@ const T = theme({
   background: 'black'
 });
 
+T.add(style(_theme => ({
+  '@global': {
+    body: {
+      padding: 0,
+      margin: 0,
+      background: _theme.background,
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      height: '100vh',
+    }
+  }
+})));
+
 DarkMode.initialize();
 
 const renderer = new CommonDOMRenderer().plug(() => T);
-renderer.render(<div class={T.classes(S).container}>
-  <Btn/>
-</div>).on(document.body);
+renderer.render(<Btn/>).on(document.body);

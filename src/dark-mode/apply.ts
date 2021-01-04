@@ -33,9 +33,9 @@ function applyDiff(source: Partial<Styles>, override: Partial<Styles>) {
   });
 
   if (Object.keys(dm).length > 0) {
-    source['body.--dark &'] = dm;
+    source['html.--dark &'] = dm;
     source['@media (prefers-color-scheme: dark)'] = {
-      'body:not(.--dark-mode-override) &': {...dm}
+      'html:not(.--dark-mode-override) &': {...dm}
     };
   }
 }
