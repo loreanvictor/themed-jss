@@ -123,7 +123,21 @@ DarkMode.initialize()
 btn.addEventListener('click', () => DarkMode.toggle())
 ```
 [►TRY IT!](https://stackblitz.com/edit/themed-jss-demo-3?file=my-styles.ts)
-<br>
 
-👉 `themed-jss` checks whether the provided theme has overrides for dark mode, and if yes, it will automatically inject
-additional CSS rules for properties that would change in dark and light mode. If you want to force a property value to re-appear in these additonal rules (for example, some `:hover` rule might otherwise take precedence), then use `!darkmode` at the end of your value.
+<br><br>
+
+👉 `themed-jss` automatically injects additional CSS rules for properties that would change in dark mode. However, sometimes it is necessary
+to enforce some CSS properties to appear in these dark-mode rules despite them not changing between dark and light mode, for example as it would
+be superceded by some other rule otherwise. You can enforce CSS properties to be repeated in dark-mode rules by adding a `!darkmode` at the end of your
+property value:
+
+```ts
+const myStyle = style(theme => ({
+  button: {
+    // ...
+    '&:hover': {
+      background: 'transparent !darkmode'
+    }
+  }
+}))
+```
