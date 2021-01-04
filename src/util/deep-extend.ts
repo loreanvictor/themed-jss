@@ -1,4 +1,7 @@
-export function deepExtend<A, B extends Partial<A>>(a: A, b: B) {
+import { PartialDeep } from 'type-fest';
+
+
+export function deepExtend<A, B extends PartialDeep<A>>(a: A, b: B) {
   const res: A = {} as any;
 
   Object.entries(a).forEach(([key, value]) => {

@@ -1,0 +1,5 @@
+{
+  "main": "../dist/es5/dark-mode/index.js",
+  "module": "../dist/es6/dark-mode/index.js",
+  "types": "dist/es6/dark-mode/index.d.ts"
+}

@@ -23,6 +23,8 @@ function applyDiff(source: Partial<Styles>, override: Partial<Styles>) {
       if (typeof value === 'string' || typeof value === 'number') {
         if (value !== ov) {
           dm[key] = ov;
+        } else if (typeof value === 'string' && value.endsWith('!darkmode')) {
+          source[key] = dm[key] = value.substring(0, value.length - 9);
         }
       } else {
         applyDiff(value as any, ov);
@@ -31,9 +33,9 @@ function applyDiff(source: Partial<Styles>, override: Partial<Styles>) {
   });
 
   if (Object.keys(dm).length > 0) {
-    source['body.dark &'] = dm;
+    source['body.--dark &'] = dm;
     source['@media (prefers-color-scheme: dark)'] = {
-      'body:not(.dark-mode-override) &': {...dm}
+      'body:not(.--dark-mode-override) &': {...dm}
     };
   }
 }

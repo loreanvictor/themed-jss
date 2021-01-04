@@ -1,3 +1,5 @@
+import { PartialDeep } from 'type-fest';
+
 import { deepExtend } from '../util/deep-extend';
 
 
@@ -13,7 +15,7 @@ export function supportsDarkMode<ThemeType>(theme: ThemeType): theme is WithDark
 }
 
 
-export function addDarkMode<ThemeType>(theme: ThemeType, overrides: Partial<ThemeType>): WithDarkMode<ThemeType> {
+export function addDarkMode<ThemeType>(theme: ThemeType, overrides: PartialDeep<ThemeType>): WithDarkMode<ThemeType> {
   return {
     ...theme,
     __dark__: deepExtend(theme, overrides)
