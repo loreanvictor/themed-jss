@@ -22,10 +22,10 @@ npm i themed-jss
 
 Features:
 - Theme-based styling based on [JSS](https://cssinjs.org)
-- Integrates with [render-jsx](https://github.com/loreanvictor/render-jsx) & [callbag-jsx](https://github.com/loreanvictor/callbag-jsx)
-- Can be used independently or with other frameworks
-- Automatic dark mode support
-- Type safe
+- [Integrates](#render-jsx--callbag-jsx) with [render-jsx](https://github.com/loreanvictor/render-jsx) & [callbag-jsx](https://github.com/loreanvictor/callbag-jsx)
+- Can be used [independently](#usage) or with [other frameworks](#react)
+- [Automatic dark mode support](#dark-mode)
+- [Type safe](#type-safety)
 
 <br><br>
 
