@@ -21,6 +21,7 @@ npm i themed-jss
 ```
 
 Features:
+- Theme-based styling
 - Integrates with [render-jsx](https://github.com/loreanvictor/render-jsx) & [callbag-jsx](https://github.com/loreanvictor/callbag-jsx)
 - Can be used independently or with other frameworks
 - Automatic dark mode support
