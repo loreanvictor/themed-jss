@@ -1,8 +1,8 @@
 <div align="center">
 
-<img src="/themed-jss.svg" width="128">
+<img src="/themed-jss.svg" width="192">
 
-<br><br>
+<br>
 
 # themed-jss
 
