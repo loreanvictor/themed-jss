@@ -22,8 +22,8 @@ npm i themed-jss
 
 Features:
 - Theme-based styling based on [JSS](https://cssinjs.org)
-- [Integrates](#render-jsx--callbag-jsx) with [render-jsx](https://github.com/loreanvictor/render-jsx) & [callbag-jsx](https://github.com/loreanvictor/callbag-jsx)
-- Can be used [independently](#usage) or with [other frameworks](#react)
+- Integrates with [`callbag-jsx`](#callbag-jsx) and [react](#react)
+- [Can be used](#usage) with other frameworks or without any frameworks
 - [Automatic dark mode support](#dark-mode)
 - [Type safe](#type-safety)
 
@@ -145,15 +145,16 @@ const myStyle = style(theme => ({
 
 <br><br>
 
-## Render JSX / Callbag JSX
+## Callbag JSX
 
-👉 Themes can be plugged into `renderer`s:
+👉 Use `themePlug()` to plug themes into [`callbag-jsx`](https://loreanvictor.github.io/callbag-jsx/) renderers:
 
 ```tsx
 import { makeRenderer } from 'callbag-jsx'
+import { themePlug } from 'themed-jss/jsx'
 
 const myTheme = theme({ ... })
-const renderer = makeRenderer().plug(() => myTheme)
+const renderer = makeRenderer().plug(themePlug(myTheme))
 ```
 
 Now components can use `this.theme` for accessing the theme:
@@ -190,6 +191,10 @@ export function MyBtn(_, renderer) {
 }
 ```
 [►Playground](https://stackblitz.com/edit/callbag-jsx-themed-jss-demo?file=my-btn.tsx)
+
+<br>
+
+👉 `themePlug()` returns a [`ComponentProcessor`](https://loreanvictor.github.io/render-jsx/docs/usage/custom-renderers/custom-component-processors#custom-component-processors), so it can be used to plug themes into any [`render-jsx`](https://loreanvictor.github.io/render-jsx/) based renderers.
 
 <br><br>
 
@@ -253,10 +258,10 @@ const myTheme = theme<MyThemeType>({
 })
 ```
 
-👉 You can specify the `this` argument for `render-jsx` components:
+👉 You can specify the `this` argument for `callbag-jsx` (in general `render-jsx`) components:
 
 ```tsx
-import { ThemedComponentThis } from 'themed-jss'
+import { ThemedComponentThis } from 'themed-jss/jsx'
 
 // ...
 
@@ -268,7 +273,7 @@ function MyBtn(this: ThemedComponentThis, ...) {
 👉 You can even specify the theme type that a particular component will be expecting:
 
 ```tsx
-import { ThemedComponentThis } from 'themed-jss'
+import { ThemedComponentThis } from 'themed-jss/jsx'
 
 // ...
 
