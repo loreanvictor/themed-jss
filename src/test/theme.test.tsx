@@ -3,31 +3,14 @@
 import { should } from 'chai';
 import * as jss from 'jss';
 import preset from 'jss-preset-default';
-import { testRender } from 'test-callbag-jsx';
 
 import { addDarkMode } from '../dark-mode';
 import { style } from '../style';
-import { Theme, ThemedComponentThis } from '../theme';
+import { Theme } from '../theme';
 
 should();
 
 describe('Theme', () => {
-  it('should provide access to itself to components.', done => {
-    const T = new Theme({});
-    testRender(R => {
-      const renderer = R.plug(() => T);
-
-      function Comp(this: ThemedComponentThis) {
-        this.theme.should.equal(T);
-        done();
-
-        return <></>;
-      }
-
-      <Comp/>;
-    });
-  });
-
   describe('.add()', () => {
     it('should add given style.', () => {
       const S = style(t => ({x: {y: t.z}}));

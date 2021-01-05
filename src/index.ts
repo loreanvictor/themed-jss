@@ -1,5 +1,5 @@
 export { ThemedStyle, style } from './style';
-export { Theme, ThemedComponentThis } from './theme';
+export { Theme } from './theme';
 export { StyleFactory } from './types';
 
 import jss from 'jss';

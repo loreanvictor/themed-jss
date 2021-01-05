@@ -1,6 +1,6 @@
 {
   "name": "themed-jss",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Themed JSS styles",
   "main": "dist/es5/index.js",
   "module": "dist/es6/index.js",
@@ -28,7 +28,9 @@
   "files": [
     "dist/es6",
     "dist/es5",
-    "dark-mode"
+    "dark-mode",
+    "jsx",
+    "react"
   ],
   "author": "Eugene Ghanizadeh Khoub <ghanizadeh.eugene@gmail.com>",
   "license": "MIT",
@@ -61,6 +63,8 @@
     "mocha": "^8.2.1",
     "nyc": "^15.1.0",
     "nyc-config-tsx": "^0.1.0",
+    "react": "^17.0.1",
+    "render-jsx": "^0.2.4",
     "rollup": "^2.35.1",
     "rollup-plugin-terser": "^7.0.2",
     "test-callbag-jsx": "^0.1.1",
@@ -79,8 +83,11 @@
     "callbag-state": "^0.2.5",
     "callbag-subscribe": "^1.5.1",
     "jss": "^10.5.0",
-    "jss-preset-default": "^10.5.0",
-    "render-jsx": "^0.2.4"
+    "jss-preset-default": "^10.5.0"
+  },
+  "peerDependencies": {
+    "react": "*",
+    "render-jsx": "*"
   },
   "nyc": {
     "extends": "nyc-config-tsx",

@@ -1,17 +1,12 @@
-import { ComponentProcessor, ComponentProvision } from 'render-jsx/component';
-import { RendererLike } from 'render-jsx';
 import { StyleSheet } from 'jss';
 
 import { ThemedStyle } from './style';
 
 
-export class Theme<ThemeType> extends ComponentProcessor<Node, RendererLike<Node>> {
+export class Theme<ThemeType = any> {
   readonly sheets: {[id: string]: StyleSheet} = {};
 
-  // istanbul ignore next
-  constructor(readonly theme: ThemeType) {
-    super();
-  }
+  constructor(readonly theme: ThemeType) {}
 
   add(style: ThemedStyle<ThemeType>, attach = true) {
     if (!(style.id in this.sheets)) {
@@ -35,19 +30,4 @@ export class Theme<ThemeType> extends ComponentProcessor<Node, RendererLike<Node
   classes(style: ThemedStyle<ThemeType>, attach = true) {
     return this.sheet(style, attach).classes;
   }
-
-  process(provide: (provision: ComponentProvision) => void) {
-    provide({
-      theme: this
-    });
-  }
-
-  priority() {
-    return ComponentProcessor.PriorityMax;
-  }
 }
-
-
-export type ThemedComponentThis<ThemeType = any> = {
-  theme: Theme<ThemeType>
-};
