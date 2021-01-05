@@ -200,7 +200,7 @@ export function MyBtn(_, renderer) {
 
 ## React
 
-👉 Use `<Themed/>` component and `useThemedStyle()` hooks for utilizing themed styles in your components:
+👉 Use `<Themed/>` component and `useThemedStyle()` hook for utilizing themed styles in your components:
 ```jsx
 // my-btn.jsx
 import { useThemedStyle } from 'themed-jss/react'
