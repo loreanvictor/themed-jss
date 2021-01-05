@@ -6,8 +6,9 @@ import { ThemedStyle } from './style';
 
 
 export class Theme<ThemeType> extends ComponentProcessor<Node, RendererLike<Node>> {
-  private sheets: {[id: string]: StyleSheet} = {};
+  readonly sheets: {[id: string]: StyleSheet} = {};
 
+  // istanbul ignore next
   constructor(readonly theme: ThemeType) {
     super();
   }

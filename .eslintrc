@@ -31,7 +31,10 @@
     "@typescript-eslint/restrict-plus-operands": "off",
     "@typescript-eslint/restrict-template-expressions": "off",
     "@typescript-eslint/no-this-alias": "off",
-    "@typescript-eslint/no-unused-vars": ["warn", { "argsIgnorePattern": "^_|^renderer$" }],
+    "@typescript-eslint/no-unused-vars": ["warn", {
+      "argsIgnorePattern": "^_|^renderer$",
+      "varsIgnorePattern": "^renderer$"
+    }],
     "@typescript-eslint/ban-types": "off"
   }
 }
