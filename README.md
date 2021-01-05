@@ -200,23 +200,15 @@ export function MyBtn(_, renderer) {
 
 ## React
 
-You can use context API to inject themes into components:
-
-```js
-// theme-context.js
-
-import { createContext } from 'react'
-
-export const ThemeContext = createContext()
-```
+👉 Use `<Themed/>` component and `useThemedStyle()` hooks for utilizing themed styles in your components:
 ```jsx
 // my-btn.jsx
+import { useThemedStyle } from 'themed-jss/react'
 
 const myBtnStyle = style(theme => ({ ... }))
 
 export function MyBtn() {
-  const theme = useContext(ThemeContext)
-  const {btn} = theme.classes(myBtnStyle)
+  const {btn} = useThemedStyle(myBtnStyle)
 
   return <button className={btn} onClick={() => DarkMode.toggle()}>
     Switch Dark Mode
@@ -226,13 +218,19 @@ export function MyBtn() {
 ```jsx
 // app.jsx
 
+import { theme } from 'themed-jss'
+import { DarkMode } from 'themed-jss/dark-mode'
+import { Themed } from 'themed-jss/react'
+
 DarkMode.initialize()
+
+const myTheme = theme({ ... })
 
 export default function App() {
   return (
-    <ThemeContext.Provider value={myTheme}>
+    <Themed theme={myTheme}>
       <MyBtn/>
-    </ThemeContext.Provider>
+    </Themed>
   )
 }
 ```
