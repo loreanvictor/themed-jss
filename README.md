@@ -127,6 +127,10 @@ btn.addEventListener('click', () => DarkMode.toggle())
 
 <br>
 
+☝️ When you manually override dark mode settings, the preference is automatically stored in local storage and loaded on next page load (thats what `DarkMode.initialize()` does basically).
+
+<br>
+
 👉 `themed-jss` automatically injects additional CSS rules for properties that would change in dark mode. However, sometimes it is necessary
 to enforce some CSS properties to appear in these dark-mode rules despite them not changing between dark and light mode, for example as it would
 be superceded by some other rule otherwise. You can enforce CSS properties to be repeated in dark-mode rules by adding a `!darkmode` at the end of your
