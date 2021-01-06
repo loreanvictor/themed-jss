@@ -24,7 +24,7 @@ your styles as functions of a _theme_, and then plug the _theme_ to get scoped C
 - Can be used with other frameworks or without any frameworks
 - Automatic Dark Mode support
 - Programmatic Dark Mode override
-- Type Safe
+- [Type Safe Theming](https://github.com/loreanvictor/themed-jss/#type-safety)
 
 ---
 
@@ -83,7 +83,7 @@ const btn = document.getElementById('btn')
 ```
 
 > :Buttons
-> > :Button label=Learn More, url=/usage
+> > :Button label=Learn More, url=/docs/usage
 >
 > > :Button label=Playground, url=https://stackblitz.com/edit/themed-jss-demo-3?file=styles.ts
 
@@ -124,7 +124,7 @@ export function App() {
 ```
 
 > :Buttons
-> > :Button label=Learn More, url=/react
+> > :Button label=Learn More, url=/docs/react
 >
 > > :Button label=Playground, url=https://stackblitz.com/edit/react-themed-jss?file=src%2FApp.js
 
@@ -155,7 +155,7 @@ function MyBtn(_, renderer) {
 ```
 
 > :Buttons
-> > :Button label=Learn More, url=/jsx
+> > :Button label=Learn More, url=/docs/jsx
 >
 > > :Button label=Playground, url=https://stackblitz.com/edit/callbag-jsx-themed-jss-demo?file=my-btn.tsx
 
@@ -205,7 +205,7 @@ DarkMode.toggle()       // --> toggles dark mode preference
 ```
 
 > :Buttons
-> > :Button label=Learn More, url=/dark-mode
+> > :Button label=Learn More, url=/docs/dark-mode
 
 ---
 

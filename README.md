@@ -27,6 +27,10 @@ Features:
 - [Automatic dark mode support](#dark-mode)
 - [Type safe](#type-safety)
 
+<br>
+
+👉 [Read the Docs](https://loreanvictor.github.io/themed-jss/)
+
 <br><br>
 
 # Usage
@@ -150,6 +154,10 @@ const btnStyle = style(theme => ({
 }))
 ```
 
+<br>
+
+👉 [Read the Docs](https://loreanvictor.github.io/themed-jss/docs/dark-mode)
+
 <br><br>
 
 ## Callbag JSX
@@ -188,6 +196,10 @@ export function MyBtn(_, renderer) {
 <br>
 
 👉 `themePlug()` returns a [`ComponentProcessor`](https://loreanvictor.github.io/render-jsx/docs/usage/custom-renderers/custom-component-processors#custom-component-processors), so it can be used to plug themes into any [`render-jsx`](https://loreanvictor.github.io/render-jsx/) based renderers.
+
+<br>
+
+👉 [Read the Docs](https://loreanvictor.github.io/themed-jss/docs/jsx)
 
 <br><br>
 
@@ -230,6 +242,10 @@ export default function App() {
 }
 ```
 [►Playground](https://stackblitz.com/edit/react-themed-jss?file=src%2FApp.js)
+
+<br>
+
+👉 [Read the Docs](https://loreanvictor.github.io/themed-jss/docs/react)
 
 <br><br>
 
@@ -285,14 +301,23 @@ Be nice to each other. Here are some useful commands for development:
 git clone https://github.com/loreanvictor/themed-jss.git
 ```
 ```bash
-npm i              # --> installs dependencies
+npm i                    # --> installs dependencies
 ```
 ```bash
-npm start          # --> servers `samples/index.tsx` on `localhost:3000`
+npm start                # --> servers `samples/index.tsx` on `localhost:3000`
 ```
 ```bash
-npm test           # --> runs tests
+npm test                 # --> runs tests
 ```
 ```bash
-npm run cov:view   # --> view coverage
+npm run cov:view         # --> view coverage
+```
+```bash
+npm i -g @codedoc/cli    # --> install CODEDOC cli (for working on docs)
+```
+```bash
+codedoc install          # --> install CODEDOC dependencies (for working on docs)
+```
+```bash
+codedoc serve            # --> serve docs on `localhost:3000/themed-jss` (from `docs/md/`)
 ```

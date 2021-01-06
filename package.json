@@ -1,6 +1,6 @@
 {
   "name": "themed-jss",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "description": "Themed JSS styles",
   "main": "dist/es5/index.js",
   "module": "dist/es6/index.js",
@@ -37,7 +37,7 @@
   "bugs": {
     "url": "https://github.com/loreanvictor/themed-jss/issues"
   },
-  "homepage": "https://github.com/loreanvictor/themed-jss#readme",
+  "homepage": "https://loreanvictor.github.io/themed-jss/",
   "devDependencies": {
     "@babel/core": "^7.12.10",
     "@babel/preset-env": "^7.12.11",
