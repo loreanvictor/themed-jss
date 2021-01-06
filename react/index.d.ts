@@ -1,3 +1,3 @@
 export {
-  Themed, useTheme, useThemedStyle
+  Themed, useTheme, useThemedStyle, useThemedStyles
 } from '../dist/es6/react';
