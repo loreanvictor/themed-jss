@@ -15,9 +15,9 @@ jobs:
           # install .codedoc dependencies
           (cd .codedoc && npm install)
           # install codedoc
-          npm install @codedoc/cli
+          sudo npm install -g @codedoc/cli
           # build repo
-          (PATH=$(npm bin):$PATH && codedoc build)
+          codedoc build
           # copy assets
           # cp favicon.ico dist/
           mkdir -p dist/docs
