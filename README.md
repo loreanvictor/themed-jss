@@ -140,12 +140,12 @@ be superceded by some other rule otherwise. You can enforce CSS properties to be
 property value:
 
 ```ts
-const myStyle = style(theme => ({
-  button: {
-    // ...
-    '&:hover': {
-      background: 'transparent !darkmode'
-    }
+const btnStyle = style(theme => ({
+  // ...
+  '&:hover': {
+    background: 'transparent !darkmode',
+    color: `${theme.primaryColor} !darkmode`,
+    border: `2px solid ${theme.primaryColor}`
   }
 }))
 ```
