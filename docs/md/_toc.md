@@ -1,0 +1,5 @@
+[Home](/)
+[Usage](/docs/usage)
+[Dark Mode](/docs/dark-mode)
+[React](/docs/react)
+[Callbag-JSX](/docs/jsx)
