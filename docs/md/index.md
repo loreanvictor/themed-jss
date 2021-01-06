@@ -166,13 +166,13 @@ function MyBtn(_, renderer) {
 Dark mode styles are automatically added when you specify dark mode overrides in your theme. This theme
 won't have dark mode support:
 ```ts
-/*~warn~*/export const myTheme = theme(
-  {
+export const myTheme = theme(       // --> this theme does not support dark mode
+  /*~warn~*/{
     primaryColor: '#00917c',
     backgroundColor: '#fde8cd',
     textColor: '#424242',
-  }
-)/*~warn~*/
+  }/*~warn~*/
+)
 ```
 But this theme will automatically get all additional CSS rules for dark mode support:
 ```ts

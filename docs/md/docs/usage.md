@@ -113,11 +113,40 @@ myTheme.add(myGlobalStyle)
 ```js
 import { keyframes } from 'themed-jss'
 
-const myAnimation = 
+const myAnimation = keyframes(theme => ({
+  from: {
+    background: theme.text
+  },
+  to: {
+    background: 'transparent'
+  }
+}))
+```
+<br>
+👉 Use animations in other styles like this:
+
+```js
+const myStyle = style((theme, $) => ({
+  color: theme.background,
+  animation: $(myAnimation) + ' 1s infinite'
+}))
+```
 
 ---
 
 # Style References
+
+👉 Use the `$` function passed to your style function to reference other styles:
+
+```js
+const styleA = style(() => ({ color: 'red' }))
+const styleB = style((theme, $) => ({
+  color: theme.error,
+  [$(styleA) + ' &']: {
+    color: theme.bg
+  }
+}))
+```
 
 ---
 
