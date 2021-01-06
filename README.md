@@ -34,27 +34,33 @@ Features:
 Create your styles based on a _theme_:
 
 ```ts
-// my-styles.ts
+// styles.ts
 
 import { style } from 'themed-jss'
 
-export const myStyles = style(theme => ({
-  button: {
-    background: theme.primaryColor,
-    color: theme.backgroundColor,
+export const btnStyle = style(theme => ({
+  background: theme.primaryColor,
+  color: theme.backgroundColor,
 
-    borderRadius: 3,
-    cursor: 'pointer',
-    border: 'none',
-    padding: 8,
-    fontSize: 14,
+  borderRadius: 3,
+  cursor: 'pointer',
+  border: '2px solid transparent',
+  padding: 8,
+  fontSize: 14,
+
+  '&:hover': {
+    background: 'transparent',
+    color: theme.primaryColor,
+    border: `2px solid ${theme.primaryColor}`
   }
 }))
 ```
 Then use a theme object to add your styles to the document:
 ```ts
 import { theme } from 'themed-jss'
-import { myStyles } from './my-styles'
+import { btnStyle } from './styles'
+
+const btn = document.getElementById('btn')
 
 const myTheme = theme({
   primaryColor: '#00917c',
@@ -62,10 +68,7 @@ const myTheme = theme({
   textColor: '#424242',
 })
 
-const { button } = myTheme.classes(myStyles)
-
-const btn = document.getElementById('btn')
-btn.classList.add(button)
+btn.classList.add(myTheme.class(btnStyle))
 ```
 [►Playground](https://stackblitz.com/edit/themed-jss-demo-1?file=my-styles.ts)
 
@@ -73,18 +76,18 @@ btn.classList.add(button)
 
 👉 Global styles:
 ```ts
-myTheme.add(style(theme => ({
-  '@global': {
-    body: {
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      width: '100vw',
-      height: '100vh',
-      padding: 0,
-      margin: 0,
-      background: theme.backgroundColor,
-    }
+import { global } from 'themed-jss'
+
+myTheme.add(global(theme => ({
+  body: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '100vw',
+    height: '100vh',
+    padding: 0,
+    margin: 0,
+    background: theme.backgroundColor,
   }
 })))
 ```
