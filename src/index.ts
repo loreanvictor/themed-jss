@@ -1,4 +1,4 @@
-export { ThemedStyles, ThemedStyle, styles, style, global } from './styles';
+export { ThemedStyles, ThemedStyle, styles, style, global, keyframes } from './styles';
 export { Theme } from './theme';
 
 import jss from 'jss';

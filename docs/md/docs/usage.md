@@ -11,7 +11,7 @@
 ```js
 import { style } from 'themed-jss'
 
-const myStyle = style(theme => ({
+const buttonStyle = style(theme => ({
   background: theme.bg,
   color: theme.text,
   fontSize: 16,
@@ -33,7 +33,7 @@ const myTheme = theme({
 👉 Use themes to get CSS classes:
 
 ```js
-const cssClass = myTheme.class(myStyle)
+const cssClass = myTheme.class(buttonStyle)
 element.classList.add(cssClass)
 ```
 
@@ -41,17 +41,79 @@ element.classList.add(cssClass)
 
 # Nested Styling
 
+```js
+import { style } from 'themed-jss'
+
+const buttonStyle = style(theme => ({
+  background: theme.bg,
+  color: theme.text,
+  fontSize: 16,
+
+/*!*/  '&:hover': {
+/*!*/    background: theme.text,
+/*!*/    color: theme.bg
+/*!*/  }
+}))
+```
+
 ---
 
 # Media Queries
+
+```js
+import { style } from 'themed-jss'
+
+const buttonStyle = style(theme => ({
+  background: theme.bg,
+  color: theme.text,
+  fontSize: 16,
+
+/*!*/  '@media (min-width: 1024px)': {
+/*!*/    width: '100%'
+/*!*/  }
+}))
+```
+
 
 ---
 
 # Global Styles
 
+👉 Use `global()` to create global styles:
+
+```ts
+import { global } from 'themed-jss'
+
+const myGlobalStyle = global(theme => ({
+  body: {
+    background: theme.bg,
+    color: theme.text
+  },
+
+  a: {
+    color: theme.primary
+  }
+}))
+```
+
+<br>
+
+👉 Use `.add()` method on themes to add these styles:
+
+```ts
+myTheme.add(myGlobalStyle)
+```
+
 ---
 
-# Animations
+# Animation Keyframes
+
+👉 Use `keyframes()` to create animation keyframes:
+
+```js
+import { keyframes } from 'themed-jss'
+
+const myAnimation = 
 
 ---
 
