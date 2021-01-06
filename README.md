@@ -171,13 +171,13 @@ import { style } from 'themed-jss'
 import { DarkMode } from 'themed-jss/dark-mode'
 
 
-const MyBtnStyle = style(theme => ({ ... }))
+const BtnStyle = style(theme => ({ ... }))
 
 export function MyBtn(_, renderer) {
-  const { btn } = this.theme.classes(MyBtnStyle);
+  const cls = this.theme.class(BtnStyle)
 
   return (
-    <button class={btn} onclick={() => DarkMode.toggle()}>
+    <button class={cls} onclick={() => DarkMode.toggle()}>
       Toggle Dark Mode
     </button>
   )
@@ -198,13 +198,13 @@ export function MyBtn(_, renderer) {
 // my-btn.jsx
 import { useThemedStyle } from 'themed-jss/react'
 
-const myBtnStyle = style(theme => ({ ... }))
+const BtnStyle = style(theme => ({ ... }))
 
 export function MyBtn() {
-  const {btn} = useThemedStyle(myBtnStyle)
+  const cls = useThemedStyle(BtnStyle)
 
   return (
-    <button className={btn} onClick={() => DarkMode.toggle()}>
+    <button className={cls} onClick={() => DarkMode.toggle()}>
       Switch Dark Mode
     </button>
   )
