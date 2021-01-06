@@ -1,9 +1,11 @@
 import { Styles } from 'jss';
-import { StyleFactory } from '../types';
 import { WithDarkMode } from './support';
 
 
-export function applyDarkMode<ThemeType>(theme: WithDarkMode<ThemeType>, factory: StyleFactory<ThemeType>) {
+type StylesFactory<ThemeType = any> = (theme: ThemeType) => Partial<Styles>;
+
+
+export function applyDarkMode<ThemeType>(theme: WithDarkMode<ThemeType>, factory: StylesFactory<ThemeType>) {
   const styles = factory(theme);
   const darkStyles = factory(theme.__dark__);
 

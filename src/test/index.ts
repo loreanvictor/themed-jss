@@ -2,7 +2,7 @@ import { should } from 'chai';
 import * as jss from 'jss';
 
 import { theme } from '..';
-import { style } from '../style';
+import { styles } from '../styles';
 
 should();
 
@@ -11,12 +11,12 @@ describe('themed-jss', () => {
   require('../dark-mode/test');
   require('../jsx/test');
 
-  require('./style.test');
+  require('./styles.test');
   require('./theme.test');
 
   describe('theme()', () => {
     it('should create a proper theme with proper jss plugins and stuff.', () => {
-      const S = style(t => ({x: {y: t.z}}));
+      const S = styles(t => ({x: {y: t.z}}));
       const T = theme({ z: 42 });
 
       const Sh = T.sheet(S);

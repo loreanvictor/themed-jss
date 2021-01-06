@@ -1,6 +1,6 @@
 import { StyleSheet } from 'jss';
 
-import { ThemedStyle } from './style';
+import { ThemedStyle, ThemedStyles } from './styles';
 
 
 export class Theme<ThemeType = any> {
@@ -8,26 +8,32 @@ export class Theme<ThemeType = any> {
 
   constructor(readonly theme: ThemeType) {}
 
-  add(style: ThemedStyle<ThemeType>, attach = true) {
-    if (!(style.id in this.sheets)) {
-      const sheet = style.stylesheet(this.theme);
+  add(styles: ThemedStyles<ThemeType>, attach = true) {
+    if (!(styles.id in this.sheets)) {
+      const sheet = styles.stylesheet(this.theme, s => '.' + this.class(s, attach));
       if (attach) {
         sheet.attach();
       }
 
-      this.sheets[style.id] = sheet;
+      this.sheets[styles.id] = sheet;
     }
 
     return this;
   }
 
-  sheet(style: ThemedStyle<ThemeType>, attach = true) {
-    this.add(style, attach);
+  sheet(styles: ThemedStyles<ThemeType>, attach = true) {
+    this.add(styles, attach);
 
-    return this.sheets[style.id];
+    return this.sheets[styles.id];
   }
 
-  classes(style: ThemedStyle<ThemeType>, attach = true) {
-    return this.sheet(style, attach).classes;
+  classes(styles: ThemedStyles<ThemeType>, attach = true) {
+    return this.sheet(styles, attach).classes;
+  }
+
+  class(style: ThemedStyle<ThemeType>, attach = true) {
+    const cl = this.classes(style, attach);
+
+    return cl[Object.keys(cl)[0]];
   }
 }

@@ -1,6 +1,5 @@
-export { ThemedStyle, style } from './style';
+export { ThemedStyles, ThemedStyle, styles, style, global } from './styles';
 export { Theme } from './theme';
-export { StyleFactory } from './types';
 
 import jss from 'jss';
 import preset from 'jss-preset-default';

@@ -2,7 +2,7 @@
 /* istanbul ignore file */
 
 const { createElement, createContext, useContext } = require('react');
-import { ThemedStyle } from '../style';
+import { ThemedStyle, ThemedStyles } from '../styles';
 import { Theme } from '../theme';
 
 const ThemeContext = createContext(undefined as any);
@@ -17,8 +17,14 @@ export function useTheme(): Theme<unknown> {
   return useContext(ThemeContext);
 }
 
+export function useThemedStyles(styles: ThemedStyles) {
+  const theme = useTheme();
+
+  return theme ? theme.classes(styles) : undefined;
+}
+
 export function useThemedStyle(style: ThemedStyle) {
   const theme = useTheme();
 
-  return theme ? theme.classes(style) : undefined;
+  return theme ? theme.class(style) : undefined;
 }
