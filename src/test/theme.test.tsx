@@ -5,7 +5,7 @@ import * as jss from 'jss';
 import preset from 'jss-preset-default';
 
 import { addDarkMode } from '../dark-mode';
-import { style, styles } from '../styles';
+import { keyframes, style, styles } from '../styles';
 import { Theme } from '../theme';
 
 should();
@@ -70,6 +70,31 @@ describe('Theme', () => {
       );
 
       (jss as any)['default'] = jss.create();
+    });
+
+    it('should allow referncing keyframe animations.', () => {
+      jss.default.setup(preset());
+      const K = keyframes(() => ({ from: { opacity: 0 }, to: { opacity: 1 }}));
+      const S = style((_, $) => ({
+        background: 'red',
+        animation: `${$(K)} 5s infinite`
+      }));
+
+      const T = new Theme({});
+      const Sh = T.sheet(S);
+      const Shk = T.sheet(K);
+      Shk.attached.should.be.true;
+
+      const K1 = Sh.classes[Object.keys(Sh.classes)[0]];
+      const K2 = Shk.keyframes[Object.keys(Shk.keyframes)[0]];
+
+      Sh.toString().should.equal(
+      // eslint-disable-next-line indent
+`.${K1} {
+  animation: ${K2} 5s infinite;
+  background: red;
+}`
+      );
     });
 
     it('should not attach resolved styles if `attach = false` is passed.', () => {
@@ -166,6 +191,26 @@ html.--dark ${K} {
 
       T.class(S, false);
       T.sheet(S).attached.should.be.false;
+    });
+  });
+
+  describe('.animation()', () => {
+    it('should return the animation name of given keyframes.', () => {
+      const K = keyframes(t => ({ from: {x: t.z}, to: {x: t.z * 2}}));
+      const T = new Theme({z: 7});
+
+      const An = T.animation(K);
+      const Sh = T.sheet(K);
+
+      An.should.equal(Sh.keyframes[Object.keys(Sh.keyframes)[0]]);
+    });
+
+    it('should not cause the corresponding sheet to attach when `attach = false` is passed.', () => {
+      const K = keyframes(t => ({ from: {x: t.z}, to: {x: t.z * 2}}));
+      const T = new Theme({z: 7});
+
+      T.animation(K, false);
+      T.sheet(K).attached.should.be.false;
     });
   });
 });

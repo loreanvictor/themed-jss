@@ -1,6 +1,6 @@
 import { StyleSheet } from 'jss';
 
-import { ThemedStyle, ThemedStyles } from './styles';
+import { ThemedKeyframes, ThemedStyle, ThemedStyles } from './styles';
 
 
 export class Theme<ThemeType = any> {
@@ -8,9 +8,17 @@ export class Theme<ThemeType = any> {
 
   constructor(readonly theme: ThemeType) {}
 
+  _resolve(ref: ThemedStyle<ThemeType> | ThemedKeyframes<ThemeType>, attach: boolean) {
+    if (ref instanceof ThemedKeyframes) {
+      return this.animation(ref, attach);
+    } else {
+      return '.' + this.class(ref, attach);
+    }
+  }
+
   add(styles: ThemedStyles<ThemeType>, attach = true) {
     if (!(styles.id in this.sheets)) {
-      const sheet = styles.stylesheet(this.theme, s => '.' + this.class(s, attach));
+      const sheet = styles.stylesheet(this.theme, s => this._resolve(s, attach));
       if (attach) {
         sheet.attach();
       }
@@ -35,5 +43,11 @@ export class Theme<ThemeType = any> {
     const cl = this.classes(style, attach);
 
     return cl[Object.keys(cl)[0]];
+  }
+
+  animation(keyframes: ThemedKeyframes<ThemeType>, attach = true) {
+    const sheet = this.sheet(keyframes, attach);
+
+    return sheet.keyframes[Object.keys(sheet.keyframes)[0]];
   }
 }

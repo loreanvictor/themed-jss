@@ -4,7 +4,8 @@ import { applyDarkMode, supportsDarkMode } from './dark-mode';
 import { makeId } from './util/make-id';
 
 
-export type StyleClassResolver<ThemeType = any> = (themedStyle: ThemedStyle<ThemeType>) => string;
+export type StyleClassResolver<ThemeType = any> =
+  (ref: ThemedStyle<ThemeType> | ThemedKeyframes<ThemeType>) => string;
 export type StylesFactory<ThemeType = any> = (theme: ThemeType, $: StyleClassResolver<ThemeType>) => Partial<Styles>;
 export type StyleFactory<ThemeType = any> = (theme: ThemeType, $: StyleClassResolver<ThemeType>) => JssStyle;
 
@@ -47,6 +48,18 @@ export function style<ThemeType=any>(factory: StyleFactory<ThemeType>) {
 }
 
 
-export function global<ThemType=any>(factory: StyleFactory<ThemType>) {
+export function global<ThemeType=any>(factory: StyleFactory<ThemeType>) {
   return styles((theme, $) => ({ '@global': factory(theme, $) }));
+}
+
+
+export class ThemedKeyframes<ThemeType = any> extends ThemedStyles<ThemeType> {
+  constructor(factory: StyleFactory<ThemeType>) {
+    super((theme, $) => ({ '@keyframes scoped': factory(theme, $) }));
+  }
+}
+
+
+export function keyframes<ThemeType=any>(factory: StyleFactory<ThemeType>) {
+  return new ThemedKeyframes(factory);
 }

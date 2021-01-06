@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-expressions */
 import { should } from 'chai';
 import { addDarkMode } from '../dark-mode';
-import { global, style, styles, ThemedStyles } from '../styles';
+import { global, keyframes, style, styles, ThemedStyles } from '../styles';
 
 should();
 
@@ -103,6 +103,24 @@ describe('global()', () => {
           background: 'black'
         }
       }
+    });
+  });
+});
+
+describe('keyframes()', () => {
+  it('should create a keyframes style', () => {
+    const K = keyframes(theme => ({
+      from: {a: theme.x},
+      to: {a: theme.x + 1}
+    }));
+
+    K.should.be.instanceOf(ThemedStyles);
+    const A = K.apply({ x: 42 }, () => '');
+    const key = Object.keys(A)[0];
+    key.startsWith('@keyframes').should.be.true;
+    A[key]!.should.eql({
+      from: { a: 42 },
+      to: { a: 43 }
     });
   });
 });
