@@ -11,6 +11,7 @@ describe('themed-jss', () => {
   require('../dark-mode/test');
   require('../jsx/test');
 
+  require('./helpers.test');
   require('./styles.test');
   require('./theme.test');
 

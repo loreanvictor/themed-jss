@@ -1,5 +1,8 @@
 export { ThemedStyles, ThemedStyle, styles, style, global, keyframes } from './styles';
 export { Theme } from './theme';
+export {
+  combined, next, also, ancestorIs, previousIs, child, descendant, parentIs, precedingIs, succeeding, not
+} from './helpers';
 
 import jss from 'jss';
 import preset from 'jss-preset-default';

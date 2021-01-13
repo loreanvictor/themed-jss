@@ -148,6 +148,26 @@ const styleB = style((theme, $) => ({
 }))
 ```
 
+<br>
+
+👉 Use [reference helpers](/docs/reference-helpers) in combination with `$` function for more readable styling:
+
+```js
+/*!*/import { parentIs } from 'themed-jss'
+
+const styleA = style(() => ({ color: 'red' }))
+const styleB = style((theme, $) => ({
+  color: theme.error,
+/*!*/  [parentIs($(styleA))]: {
+/*!*/    color: theme.bg
+/*!*/  }
+}))
+```
+☝️ This means elements styled with `styleB` should have a color of `theme.bg` when their parent is styled with `styleA`.
+
+> :Buttons
+> > :Button label=Learn More, url=/docs/reference-helpers
+
 ---
 
 > :ToCPrevNext
