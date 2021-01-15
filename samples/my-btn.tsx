@@ -1,21 +1,29 @@
 import { RendererLike } from 'render-jsx';
-import { style } from '../src';
+import { style, when } from '../src';
 import { DarkMode } from '../src/dark-mode';
 import { ThemedComponentThis } from '../src/jsx';
 
+type T = {
+  card: string,
+  primary: string,
+  background: string
+};
 
-const MyBtnStyle = style(theme => ({
-  color: theme.background,
-  background: theme.text,
-  border: `2px solid ${theme.text}`,
-  padding: 8,
-  borderRadius: 3,
-  cursor: 'pointer',
+function E(n: number) {
+  return {
+    boxShadow: `0 2px ${n}px blue !darkmode`,
+  };
+}
 
-  '&:hover': {
-    color: theme.text,
-    background: 'transparent !darkmode',
-  }
+const MyBtnStyle = style<T>(theme => ({
+  background: theme.background,
+  [when('hellow')]: {
+    color: 'blue',
+    ...E(2),
+  },
+  [when('world')]: {
+    ...E(3),
+  },
 }));
 
 

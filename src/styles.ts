@@ -1,4 +1,4 @@
-import jss, { Styles, JssStyle } from 'jss';
+import jss, { Styles } from 'jss';
 
 import { applyDarkMode, supportsDarkMode } from './dark-mode';
 import { makeId } from './util/make-id';
@@ -7,7 +7,7 @@ import { makeId } from './util/make-id';
 export type StyleClassResolver<ThemeType = any> =
   (ref: ThemedStyle<ThemeType> | ThemedKeyframes<ThemeType>) => string;
 export type StylesFactory<ThemeType = any> = (theme: ThemeType, $: StyleClassResolver<ThemeType>) => Partial<Styles>;
-export type StyleFactory<ThemeType = any> = (theme: ThemeType, $: StyleClassResolver<ThemeType>) => JssStyle;
+export type StyleFactory<ThemeType = any> = (theme: ThemeType, $: StyleClassResolver<ThemeType>) => any;
 
 
 export class ThemedStyles<ThemeType = any> {
