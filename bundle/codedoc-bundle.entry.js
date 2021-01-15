@@ -15,6 +15,7 @@ import { postNavSearch } from '/home/runner/work/themed-jss/themed-jss/.codedoc/
 import { copyLineLinks } from '/home/runner/work/themed-jss/themed-jss/.codedoc/node_modules/@codedoc/core/dist/es6/components/code/line-links/copy-line-link.js';copyLineLinks();
 import { gatherFootnotes } from '/home/runner/work/themed-jss/themed-jss/.codedoc/node_modules/@codedoc/core/dist/es6/components/footnote/gather-footnotes.js';gatherFootnotes();
 import { ToCPrevNext } from '/home/runner/work/themed-jss/themed-jss/.codedoc/node_modules/@codedoc/core/dist/es6/components/page/toc/prevnext/index.js';
+import { CollapseControl } from '/home/runner/work/themed-jss/themed-jss/.codedoc/node_modules/@codedoc/core/dist/es6/components/collapse/collapse-control.js';
 import { GithubSearch } from '/home/runner/work/themed-jss/themed-jss/.codedoc/node_modules/@codedoc/core/dist/es6/components/misc/github/search.js';
 import { ToCToggle } from '/home/runner/work/themed-jss/themed-jss/.codedoc/node_modules/@codedoc/core/dist/es6/components/page/toc/toggle/index.js';
 import { DarkModeSwitch } from '/home/runner/work/themed-jss/themed-jss/.codedoc/node_modules/@codedoc/core/dist/es6/components/darkmode/index.js';
@@ -22,6 +23,7 @@ import { ConfigTransport } from '/home/runner/work/themed-jss/themed-jss/.codedo
 
 const components = {
   '+veqJzHoH3/ZpK1c67/DsA==': ToCPrevNext,
+  'PS/dIp+hNdW7wyqpZTptVw==': CollapseControl,
   'iwNdDktcOYyLWNM0aFL1AA==': GithubSearch,
   's0+GxWOxtZaBmpkMr8TNVw==': ToCToggle,
   '2g7HxCcuLaBwgm+yHWXgGQ==': DarkModeSwitch,

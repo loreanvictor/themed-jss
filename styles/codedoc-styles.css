@@ -635,7 +635,62 @@ a.button-0-0-9.icon {
   width: 36px;
   height: 36px;
 }
-  .watermark-0-0-10 {
+  .collapse-0-0-10>.label {
+    cursor: pointer;
+    margin: 8px 0;
+    display: flex;
+    align-items: center;
+    user-select: none;
+  }
+  .collapse-0-0-10>.content {
+    opacity: 0;
+    max-height: 0;
+    transition: opacity .3s;
+    visibility: hidden;
+    border-left: 2px solid rgba(224, 224, 224, 0.5);
+    padding-left: 16px;
+  }
+  .collapse-0-0-10.open>.content {
+    opacity: 1;
+    max-height: none;
+    visibility: visible;
+  }
+  .collapse-0-0-10.open>.label .icon-font {
+    transform: rotate(90deg);
+  }
+  body.dark-mode-animate .collapse-0-0-10>.content {
+    transition: transform .15s, opacity .15s, border-color .3s;
+  }
+  body.dark .collapse-0-0-10>.content {
+    border-color: rgba(49, 49, 49, 0.5);
+  }
+@media (prefers-color-scheme: dark) {
+  body:not(.dark-mode-animate) .collapse-0-0-10>.content {
+    border-color: rgba(49, 49, 49, 0.5);
+  }
+}
+  .collapse-0-0-10>.label .text {
+    flex-grow: 1;
+  }
+  .collapse-0-0-10>.label .icon-font {
+    margin-right: 32px;
+  }
+  .collapse-0-0-10>.label:hover {
+    color: #fa26a0;
+    transition: color .15s;
+  }
+  body.dark .collapse-0-0-10>.label:hover {
+    color: #a3f7bf;
+  }
+@media (prefers-color-scheme: dark) {
+  body:not(.dark-mode-animate) .collapse-0-0-10>.label:hover {
+    color: #a3f7bf;
+  }
+}
+  body.dark-mode-animate .collapse-0-0-10>.label .icon-font {
+    transition: transform .15s;
+  }
+  .watermark-0-0-11 {
     color: #424242;
     cursor: pointer;
     display: inline-block;
@@ -644,41 +699,41 @@ a.button-0-0-9.icon {
     transition: opacity .15s;
     text-decoration: none !important;
   }
-  body.dark-mode-animate .watermark-0-0-10 {
+  body.dark-mode-animate .watermark-0-0-11 {
     transition: opacity .15s, color .3s;
   }
-  .watermark-0-0-10:hover {
+  .watermark-0-0-11:hover {
     opacity: 1;
     text-decoration: none;
   }
 @media (prefers-color-scheme: dark) {
-  body:not(.dark-mode-animate) .watermark-0-0-10 {
+  body:not(.dark-mode-animate) .watermark-0-0-11 {
     color: #eeeeee;
   }
 }
-  body.dark .watermark-0-0-10 {
+  body.dark .watermark-0-0-11 {
     color: #eeeeee;
   }
-  .watermark-0-0-10 svg {
+  .watermark-0-0-11 svg {
     width: 2.8rem;
     display: block;
     margin-top: .25rem;
   }
-  .watermark-0-0-10 svg g {
+  .watermark-0-0-11 svg g {
     fill: #424242;
   }
-  body.dark-mode-animate .watermark-0-0-10 svg g {
+  body.dark-mode-animate .watermark-0-0-11 svg g {
     transition: fill .3s;
   }
-  body.dark .watermark-0-0-10 svg g {
+  body.dark .watermark-0-0-11 svg g {
     fill: #eeeeee;
   }
 @media (prefers-color-scheme: dark) {
-  body:not(.dark-mode-animate) .watermark-0-0-10 svg g {
+  body:not(.dark-mode-animate) .watermark-0-0-11 svg g {
     fill: #eeeeee;
   }
 }
-  .header-0-0-11 {
+  .header-0-0-12 {
     top: 0;
     right: 0;
     padding: 32px;
@@ -686,7 +741,7 @@ a.button-0-0-9.icon {
     position: fixed;
     text-align: right;
   }
-  .footer-0-0-12 {
+  .footer-0-0-13 {
     left: 0;
     right: 0;
     bottom: 0;
@@ -701,67 +756,67 @@ a.button-0-0-9.icon {
     justify-content: center;
     -webkit-backdrop-filter: blur(12px);
   }
-  body.dark-mode-animate .footer-0-0-12 {
+  body.dark-mode-animate .footer-0-0-13 {
     transition: background .3s;
   }
 @media (prefers-color-scheme: dark) {
-  body:not(.dark-mode-animate) .footer-0-0-12 {
+  body:not(.dark-mode-animate) .footer-0-0-13 {
     background: rgba(13, 17, 23, 0.85);
   }
 }
-  body.dark .footer-0-0-12 {
+  body.dark .footer-0-0-13 {
     background: rgba(13, 17, 23, 0.85);
   }
-  .footer-0-0-12 .main {
+  .footer-0-0-13 .main {
     overflow: hidden;
     flex-grow: 1;
     text-align: center;
   }
-  .footer-0-0-12 .left {
+  .footer-0-0-13 .left {
     padding-left: 32px;
   }
-  .footer-0-0-12 .right {
+  .footer-0-0-13 .right {
     padding-right: 32px;
   }
 @media screen and (max-width: 800px) {
-  .footer-0-0-12 .left {
+  .footer-0-0-13 .left {
     padding-left: 16px;
   }
-  .footer-0-0-12 .right {
+  .footer-0-0-13 .right {
     padding-right: 16px;
   }
 }
-  .footer-0-0-12 .main>.inside {
+  .footer-0-0-13 .main>.inside {
     display: inline-flex;
     overflow: auto;
     max-width: 100%;
     align-items: center;
   }
-  .footer-0-0-12 .main>.inside hr {
+  .footer-0-0-13 .main>.inside hr {
     width: 2px;
     border: none;
     height: 16px;
     margin: 16px;
     background: #e0e0e0;
   }
-  .footer-0-0-12 .main>.inside a {
+  .footer-0-0-13 .main>.inside a {
     text-decoration: none;
   }
-  .footer-0-0-12 .main>.inside a:hover {
+  .footer-0-0-13 .main>.inside a:hover {
     text-decoration: underline ;
   }
-  body.dark-mode-animate .footer-0-0-12 .main>.inside hr {
+  body.dark-mode-animate .footer-0-0-13 .main>.inside hr {
     transition: background .3s;
   }
-  body.dark .footer-0-0-12 .main>.inside hr {
+  body.dark .footer-0-0-13 .main>.inside hr {
     background: #313131;
   }
 @media (prefers-color-scheme: dark) {
-  body:not(.dark-mode-animate) .footer-0-0-12 .main>.inside hr {
+  body:not(.dark-mode-animate) .footer-0-0-13 .main>.inside hr {
     background: #313131;
   }
 }
-  .toc-0-0-13 {
+  .toc-0-0-14 {
     top: 0;
     left: 0;
     width: calc(50vw - 464px);
@@ -775,35 +830,35 @@ a.button-0-0-9.icon {
     flex-direction: column;
     padding-bottom: 64px;
   }
-  body.dark-mode-animate .toc-0-0-13 {
+  body.dark-mode-animate .toc-0-0-14 {
     transition: background .3s, border-color .3s;
   }
-  body.dark .toc-0-0-13 {
+  body.dark .toc-0-0-14 {
     background: rgb(18, 23, 32);
     border-color: rgb(18, 23, 32);
   }
 @media (prefers-color-scheme: dark) {
-  body:not(.dark-mode-animate) .toc-0-0-13 {
+  body:not(.dark-mode-animate) .toc-0-0-14 {
     background: rgb(18, 23, 32);
     border-color: rgb(18, 23, 32);
   }
 }
 @media screen and (max-width: 1200px) {
-  .toc-0-0-13 {
+  .toc-0-0-14 {
     width: 100vw;
     transform: translateX(-110vw);
   }
 }
-  .toc-0-0-13.animated {
+  .toc-0-0-14.animated {
     transition: transform .3s;
   }
-  .toc-0-0-13.active {
+  .toc-0-0-14.active {
     transform: translateX(0);
   }
-  .toc-0-0-13 p {
+  .toc-0-0-14 p {
     margin: 0;
   }
-  .toc-0-0-13 a {
+  .toc-0-0-14 a {
     border: 1px solid transparent;
     display: block;
     padding: 8px;
@@ -813,49 +868,49 @@ a.button-0-0-9.icon {
     border-radius: 3px;
     text-decoration: none;
   }
-  body.dark-mode-animate .toc-0-0-13 a {
+  body.dark-mode-animate .toc-0-0-14 a {
     transition: border-color .3s, background .3s;
   }
-  .toc-0-0-13 a:hover {
+  .toc-0-0-14 a:hover {
     background: #f5f5f5;
     text-decoration: none;
   }
-  .toc-0-0-13 a.current {
+  .toc-0-0-14 a.current {
     background: #f5f5f5;
     border-color: #e7e7e7;
     margin-right: 0;
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
   }
-  body.dark .toc-0-0-13 a.current {
+  body.dark .toc-0-0-14 a.current {
     background: hsl(216, 27.8%, 7.2%);
     border-color: rgb(18, 23, 32);
   }
 @media (prefers-color-scheme: dark) {
-  body:not(.dark-mode-animate) .toc-0-0-13 a.current {
+  body:not(.dark-mode-animate) .toc-0-0-14 a.current {
     background: rgb(13, 17, 23);
     border-color: rgb(18, 23, 32);
   }
 }
 @media screen and (max-width: 1200px) {
-  .toc-0-0-13 a.current {
+  .toc-0-0-14 a.current {
     border-right: 1px solid;
     margin-right: -8px;
     border-radius: 3px;
   }
 }
-  body.dark .toc-0-0-13 a:hover {
+  body.dark .toc-0-0-14 a:hover {
     background: hsl(216, 27.8%, 7.2%);
   }
 @media (prefers-color-scheme: dark) {
-  body:not(.dark-mode-animate) .toc-0-0-13 a:hover {
+  body:not(.dark-mode-animate) .toc-0-0-14 a:hover {
     background: hsl(216, 27.8%, 7.2%);
   }
 }
-  body.dark-mode-animate .toc-0-0-13.animated {
+  body.dark-mode-animate .toc-0-0-14.animated {
     transition: transform .3s, background .3s, border-color .3s;
   }
-  .content-0-0-14 {
+  .content-0-0-15 {
     padding: 32px;
     overflow: auto;
     flex-grow: 1;
@@ -863,12 +918,12 @@ a.button-0-0-9.icon {
     padding-right: 0;
   }
 @media screen and (max-width: 1200px) {
-  .content-0-0-14 {
+  .content-0-0-15 {
     margin-right: 0;
     padding-right: 32px;
   }
 }
-  .contentnav-0-0-16 {
+  .contentnav-0-0-17 {
     right: 0;
     width: calc(50vw - 496px);
     bottom: 96px;
@@ -882,56 +937,56 @@ a.button-0-0-9.icon {
     scroll-behavior: initial;
   }
 @media screen and (max-width: 1200px) {
-  .contentnav-0-0-16 {
+  .contentnav-0-0-17 {
     display: none;
   }
 }
-  .contentnav-0-0-16 a {
+  .contentnav-0-0-17 a {
     color: #424242;
     display: block;
     opacity: 0.2;
     text-decoration: none;
   }
 @media (prefers-color-scheme: dark) {
-  body:not(.dark-mode-animate) .contentnav-0-0-16 {
+  body:not(.dark-mode-animate) .contentnav-0-0-17 {
     border-color: #313131;
   }
-  body:not(.dark-mode-animate) .contentnav-0-0-16 a {
+  body:not(.dark-mode-animate) .contentnav-0-0-17 a {
     color: #eeeeee;
   }
-  body:not(.dark-mode-animate) .contentnav-0-0-16 a:hover, body:not(.dark-mode-animate) .contentnav-0-0-16 a.active {
+  body:not(.dark-mode-animate) .contentnav-0-0-17 a:hover, body:not(.dark-mode-animate) .contentnav-0-0-17 a.active {
     color: #a3f7bf;
   }
 }
-  body.dark .contentnav-0-0-16 {
+  body.dark .contentnav-0-0-17 {
     border-color: #313131;
   }
-  body.dark .contentnav-0-0-16 a {
+  body.dark .contentnav-0-0-17 a {
     color: #eeeeee;
   }
-  body.dark .contentnav-0-0-16 a:hover, body.dark .contentnav-0-0-16 a.active {
+  body.dark .contentnav-0-0-17 a:hover, body.dark .contentnav-0-0-17 a.active {
     color: #a3f7bf;
   }
-  body.dark-mode-animate .contentnav-0-0-16 a {
+  body.dark-mode-animate .contentnav-0-0-17 a {
     transition: color .3s, opacity .3s;
   }
-  .contentnav-0-0-16 a:hover, .contentnav-0-0-16 a.active {
+  .contentnav-0-0-17 a:hover, .contentnav-0-0-17 a.active {
     color: #fa26a0;
     opacity: 1;
   }
-  .contentnav-0-0-16 a.h2 {
+  .contentnav-0-0-17 a.h2 {
     margin-left: 12px;
   }
-  .contentnav-0-0-16 a.h3 {
+  .contentnav-0-0-17 a.h3 {
     margin-left: 24px;
   }
-  .contentnav-0-0-16 a.h4 {
+  .contentnav-0-0-17 a.h4 {
     margin-left: 36px;
   }
-  .contentnav-0-0-16 a.h5 {
+  .contentnav-0-0-17 a.h5 {
     margin-left: 48px;
   }
-  .contentnav-0-0-16 a.h6 {
+  .contentnav-0-0-17 a.h6 {
     margin-left: 60px;
   }
 * {

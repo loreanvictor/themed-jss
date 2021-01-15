@@ -83,6 +83,11 @@
       "hash": "+veqJzHoH3/ZpK1c67/DsA=="
     },
     {
+      "name": "CollapseControl",
+      "filename": "/home/runner/work/themed-jss/themed-jss/.codedoc/node_modules/@codedoc/core/dist/es6/components/collapse/collapse-control.js",
+      "hash": "PS/dIp+hNdW7wyqpZTptVw=="
+    },
+    {
       "name": "GithubSearch",
       "filename": "/home/runner/work/themed-jss/themed-jss/.codedoc/node_modules/@codedoc/core/dist/es6/components/misc/github/search.js",
       "hash": "iwNdDktcOYyLWNM0aFL1AA=="
