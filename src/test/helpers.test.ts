@@ -1,10 +1,16 @@
 import { should } from 'chai';
 
 import {
-  next, succeeding, precedingIs, parentIs, descendant, child, previousIs, ancestorIs, also, combined, not
+  either, next, succeeding, precedingIs, parentIs, descendant, child, previousIs, ancestorIs, also, combined, not
 } from '../helpers';
 
 should();
+
+describe('either()', () => {
+  it('should return or selector rule.', () => {
+    either('A', '.B', ':X', '[Y]').should.equal('A, .B, :X, [Y]');
+  });
+});
 
 describe('combined()', () => {
   it('should return combined selector rule.', () => {

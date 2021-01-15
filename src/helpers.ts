@@ -1,3 +1,7 @@
+export function either(...selectors: string[]) {
+  return selectors.join(', ');
+}
+
 export function combined(...selectors: string[]) {
   return selectors.join('');
 }
