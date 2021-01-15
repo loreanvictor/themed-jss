@@ -1,6 +1,9 @@
 [Home](/)
 [Usage](/docs/usage)
 [Dark Mode](/docs/dark-mode)
-[React](/docs/react)
-[Callbag JSX](/docs/jsx)
 [Reference Helpers](/docs/reference-helpers)
+
+> :Collapse label=Integrations
+>
+> [React](/docs/react)
+> [Callbag JSX](/docs/jsx)

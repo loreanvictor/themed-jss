@@ -37,7 +37,7 @@ style(theme => ({
   text: theme.background,
   border: `1px solid ${theme.primary}`
 
-  '&:hover': {
+  [when(':hover')]: {
     background: 'transparent',
     text: theme.primary
   }
@@ -91,7 +91,7 @@ style(theme => ({
   text: theme.background,
   border: `1px solid ${theme.primary}`
 
-  '&:hover': {
+  [when(':hover')]: {
     background: 'transparent',
 /*!*/    text: `${theme.primary} !darkmode`
   }
@@ -171,6 +171,29 @@ pipe(
 > If the dark mode preference is switched back to what the system setting is, the local storage override
 > will be deleted. This means if the user reverts back to system settings and then changes their system
 > settings, dark mode state will also be updated automatically.
+
+---
+
+# Dark/Light Mode Specific Styles
+
+👉 Use `inDarkMode()` for styles specific to dark mode, and `inLightMode()` for styles specific to light mode:
+
+```js
+import { inDarkMode, inLightMode } from 'themed-jss/dark-mode'
+
+export default style(theme => ({
+  background: theme.primary,
+  text: theme.background,
+
+  ...inDarkMode({
+    borderColor: theme.card,
+  }),
+
+  ...inLightMode({
+    borderColor: theme.text
+  }),
+}))
+```
 
 ---
 

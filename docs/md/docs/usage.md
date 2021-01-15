@@ -42,19 +42,23 @@ element.classList.add(cssClass)
 # Nested Styling
 
 ```js
-import { style } from 'themed-jss'
+import { style, when } from 'themed-jss'
 
 const buttonStyle = style(theme => ({
   background: theme.bg,
   color: theme.text,
   fontSize: 16,
 
-/*!*/  '&:hover': {
+/*!*/  [when(':hover')]: {
 /*!*/    background: theme.text,
 /*!*/    color: theme.bg
 /*!*/  }
 }))
 ```
+
+> :Buttons
+> > :Button url=/docs/reference-helpers, label=Learn More
+
 
 ---
 
@@ -136,21 +140,8 @@ const myStyle = style((theme, $) => ({
 
 # Style References
 
-👉 Use the `$` function passed to your style function to reference other styles:
-
-```js
-const styleA = style(() => ({ color: 'red' }))
-const styleB = style((theme, $) => ({
-  color: theme.error,
-  [$(styleA) + ' &']: {
-    color: theme.bg
-  }
-}))
-```
-
-<br>
-
-👉 Use [reference helpers](/docs/reference-helpers) in combination with `$` function for more readable styling:
+👉 Use [reference helpers](/docs/reference-helpers) in combination with `$` callback passed to your style function
+to reference other styles:
 
 ```js
 /*!*/import { parentIs } from 'themed-jss'

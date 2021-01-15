@@ -10,7 +10,7 @@ export function not(...selectors: string[]) {
   return `:not(${combined(...selectors)})`;
 }
 
-export function also(...selectors: string[]) {
+export function when(...selectors: string[]) {
   return `&${combined(...selectors)}`;
 }
 

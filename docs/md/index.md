@@ -33,14 +33,14 @@ your styles as functions of a _theme_, and then plug the _theme_ to get scoped C
 👉 Create your theme-based styles (e.g. for each component):
 
 ```ts | styles.ts
-import { style } from 'themed-jss'
+import { style, when } from 'themed-jss'
 
 export const BtnStyle = style(theme => ({
   background: theme.primaryColor,
   color: theme.backgroundColor,
   // ...
 
-  '&:hover': {
+  [when(':hover')]: {
     background: 'transparent',
     color: `${theme.primaryColor} !darkmode`,
     // ...

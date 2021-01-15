@@ -4,6 +4,8 @@ import pipe from 'callbag-pipe';
 import subscribe from 'callbag-subscribe';
 import { state, State } from 'callbag-state';
 
+import { DarkModeMediaQuery, DarkModeClass, DarkModeOverrideClass } from './helper';
+
 // eslint-disable-next-line no-shadow
 export enum DarkModeState {
   Dark, Light
@@ -19,7 +21,7 @@ export class DarkMode {
   private _sub: () => void;
 
   constructor() {
-    this._query = window.matchMedia('(prefers-color-scheme: dark)');
+    this._query = window.matchMedia(DarkModeMediaQuery);
 
     this._system = this._query.matches ? DarkModeState.Dark : DarkModeState.Light;
     this.state = state(this._system);
@@ -34,15 +36,15 @@ export class DarkMode {
       this.state.set(localStorage.getItem('--dark-mode') === 'true' ? DarkModeState.Dark : DarkModeState.Light);
     }
 
-    document.body.parentElement!.classList.add('--dark-mode-override');
+    document.body.parentElement!.classList.add(DarkModeOverrideClass);
 
     this._sub = pipe(
       this.state,
       subscribe(mode => {
         if (mode === DarkModeState.Dark) {
-          document.body.parentElement!.classList.add('--dark');
+          document.body.parentElement!.classList.add(DarkModeClass);
         } else {
-          document.body.parentElement!.classList.remove('--dark');
+          document.body.parentElement!.classList.remove(DarkModeClass);
         }
 
         if (mode !== this._system) {

@@ -1,4 +1,5 @@
 import { Styles } from 'jss';
+import { inDarkMode } from './helper';
 import { WithDarkMode } from './support';
 
 
@@ -36,9 +37,6 @@ function applyDiff(source: Partial<Styles>, override: Partial<Styles>) {
   });
 
   if (Object.keys(dm).length > 0) {
-    source['html.--dark &'] = dm;
-    source['@media (prefers-color-scheme: dark)'] = {
-      'html:not(.--dark-mode-override) &': {...dm}
-    };
+    Object.assign(source, inDarkMode(dm));
   }
 }

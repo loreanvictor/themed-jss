@@ -1,7 +1,7 @@
 import { should } from 'chai';
 
 import {
-  either, next, succeeding, precedingIs, parentIs, descendant, child, previousIs, ancestorIs, also, combined, not
+  either, next, succeeding, precedingIs, parentIs, descendant, child, previousIs, ancestorIs, when, combined, not
 } from '../helpers';
 
 should();
@@ -24,9 +24,9 @@ describe('not()', () => {
   });
 });
 
-describe('also()', () => {
+describe('when()', () => {
   it('should return combined selector rule with self.', () => {
-    also('.A', '.B', ':X', '[Y]').should.equal('&.A.B:X[Y]');
+    when('.A', '.B', ':X', '[Y]').should.equal('&.A.B:X[Y]');
   });
 });
 
