@@ -83,6 +83,27 @@ describe('style()', () => {
       }
     });
   });
+
+  it('should create proper styles for themes without darkmode support when having darkmode override.', () => {
+    const S = style(() => ({
+      color: 'red !darkmode',
+      '&:hover': {
+        '&:disabled': {
+          color: 'blue !darkmode'
+        }
+      }
+    }));
+
+    const A = S.apply({}, () => '');
+    A[Object.keys(A)[0]]!.should.eql({
+      color: 'red',
+      '&:hover': {
+        '&:disabled': {
+          color: 'blue'
+        }
+      }
+    });
+  });
 });
 
 

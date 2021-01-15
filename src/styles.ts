@@ -1,6 +1,7 @@
 import jss, { Styles } from 'jss';
 
 import { applyDarkMode, supportsDarkMode } from './dark-mode';
+import { purify } from './dark-mode/apply';
 import { makeId } from './util/make-id';
 
 
@@ -21,7 +22,7 @@ export class ThemedStyles<ThemeType = any> {
     if (supportsDarkMode(theme)) {
       return applyDarkMode(theme, t => this.factory(t, $));
     } else {
-      return this.factory(theme, $);
+      return purify(this.factory(theme, $));
     }
   }
 

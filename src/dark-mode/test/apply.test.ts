@@ -58,4 +58,21 @@ describe('applyDarkMode()', () => {
       }
     });
   });
+
+  it('should properly apply properties that differ in dark and light mode with !darkmode', () => {
+    const T = addDarkMode({ A: 'red' }, { A: 'blue' });
+    const D = applyDarkMode(T, theme => ({
+      x: `${theme.A} !darkmode`
+    }));
+
+    D.should.eql({
+      x: 'red',
+      'html.--dark &': { x: 'blue' },
+      '@media (prefers-color-scheme: dark)': {
+        'html:not(.--dark-mode-override) &': {
+          x: 'blue'
+        }
+      }
+    });
+  });
 });
