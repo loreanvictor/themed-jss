@@ -40,7 +40,7 @@ Create your styles based on a _theme_:
 ```ts
 // styles.ts
 
-import { style } from 'themed-jss'
+import { style, when } from 'themed-jss'
 
 export const btnStyle = style(theme => ({
   background: theme.primaryColor,
@@ -52,7 +52,7 @@ export const btnStyle = style(theme => ({
   padding: 8,
   fontSize: 14,
 
-  '&:hover': {
+  [when(':hover')]: {
     background: 'transparent',
     color: theme.primaryColor,
     border: `2px solid ${theme.primaryColor}`
@@ -146,7 +146,7 @@ property value:
 ```ts
 const btnStyle = style(theme => ({
   // ...
-  '&:hover': {
+  [when(':hover')]: {
     background: 'transparent !darkmode',
     color: `${theme.primaryColor} !darkmode`,
     border: `2px solid ${theme.primaryColor}`
