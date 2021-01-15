@@ -62,6 +62,25 @@ export function Btn(_, renderer) {
 }
 ```
 
+<br>
+
+> [verified_user](:Icon (align=-6px)) **TYPE SAFETY**
+>
+> In TypeScript, it is recommended to annotate `this` to get correct
+> typing for your themed components:
+> ```tsx
+> import { ThemedComponentThis } from 'themed-jss/jsx'
+>
+> export function Btn(
+>   this: ThemedComponentThis<ThemeType>,
+>   props: any,
+>   renderer: RendererLike<Node>
+> ) {
+>   ...
+> }
+> ```
+> ☝️ `ThemeType` type argument is optional.
+
 ---
 
 # Render JSX
