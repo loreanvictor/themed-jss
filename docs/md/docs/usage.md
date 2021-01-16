@@ -161,4 +161,23 @@ const styleB = style((theme, $) => ({
 
 ---
 
+# Style Extension
+
+👉 Use `$.extend()` for extending other styles:
+
+```js
+const styleA = style( ... )
+
+const styleB = style((theme, $) => ({
+  color: theme.background,
+
+  [when(':hover')]: {
+/*!*/    ...$.extend(styleA),
+    color: theme.border,
+  }
+}))
+```
+
+---
+
 > :ToCPrevNext

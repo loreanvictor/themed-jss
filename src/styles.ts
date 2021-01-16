@@ -5,8 +5,26 @@ import { purify } from './dark-mode/apply';
 import { makeId } from './util/make-id';
 
 
-export type StyleClassResolver<ThemeType = any> =
-  (ref: ThemedStyle<ThemeType> | ThemedKeyframes<ThemeType>) => string;
+export type StyleClassResolver<ThemeType = any> = {
+  (ref: ThemedStyle<ThemeType> | ThemedKeyframes<ThemeType>): string;
+  extend: (ref: ThemedStyle<ThemeType>) => any;
+}
+
+export function makeResolver<ThemeType = any>(
+  resolve: (ref: ThemedStyle<ThemeType> | ThemedKeyframes<ThemeType>) => string,
+  extend: (ref: ThemedStyle<ThemeType>) => any,
+) {
+  (resolve as any).extend = extend;
+
+  return resolve as StyleClassResolver<ThemeType>;
+}
+
+// istanbul ignore next
+export function noopResolver() {
+  return makeResolver(() => '', () => {});
+}
+
+
 export type StylesFactory<ThemeType = any> = (theme: ThemeType, $: StyleClassResolver<ThemeType>) => Partial<Styles>;
 export type StyleFactory<ThemeType = any> = (theme: ThemeType, $: StyleClassResolver<ThemeType>) => any;
 

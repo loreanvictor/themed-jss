@@ -105,6 +105,33 @@ describe('Theme', () => {
 
       T.sheet(S1).attached.should.be.false;
     });
+
+    it('should allow extension of other styles.', () => {
+      const S1 = style(t => ({x: t.z}));
+      const S2 = style((t, $) => ({ y: t.z, ...$.extend(S1) }));
+      const T = new Theme({z : 42});
+      T.add(S2);
+      const Sh = T.sheet(S2);
+      const C = Sh.classes[Object.keys(Sh.classes)[0]];
+
+      Sh.toString().should.equal(
+      // eslint-disable-next-line indent
+`.${C} {
+  x: 42;
+  y: 42;
+}`
+      );
+    });
+
+    it('should not attach extended styles when `attach = false` is passed.', () => {
+      const S1 = style(t => ({x: t.z}));
+      const S2 = style((t, $) => ({ x: t.z, [`& ${$(S1)}`]: { y: 42 } }));
+      const S3 = style((t, $) => ({ hi: 'hola', ...$.extend(S2)}));
+      const T = new Theme({ z: 42 });
+      T.add(S3, false);
+
+      T.sheet(S1).attached.should.be.false;
+    });
   });
 
   describe('.sheet()', () => {

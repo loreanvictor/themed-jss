@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-expressions */
 import { should } from 'chai';
 import { addDarkMode } from '../dark-mode';
-import { global, keyframes, style, styles, ThemedStyles } from '../styles';
+import { global, keyframes, noopResolver, style, styles, ThemedStyles } from '../styles';
 
 should();
 
@@ -20,7 +20,7 @@ describe('styles()', () => {
         done();
 
         return {};
-      }).apply(T, () => '');
+      }).apply(T, noopResolver());
     });
 
     it('should apply dark mode rules when theme supports it.', () => {
@@ -30,7 +30,7 @@ describe('styles()', () => {
         }
       }));
 
-      S.apply(addDarkMode({c: 1} , {c: 2}), () => '').should.eql({
+      S.apply(addDarkMode({c: 1} , {c: 2}), noopResolver()).should.eql({
         A: {
           x: 1,
           'html.--dark &': {x: 2},
@@ -47,7 +47,7 @@ describe('styles()', () => {
   describe('.stylesheet()', () => {
     it('should create a style sheet using given theme.', () => {
       const S = styles(t => ({a: {x: t.c + 1}}));
-      const sheet = S.stylesheet({ c: 41 }, () => '');
+      const sheet = S.stylesheet({ c: 41 }, noopResolver());
 
       sheet.attached.should.be.false;
       sheet.toString().should.equal(
@@ -70,7 +70,7 @@ describe('style()', () => {
 
     S.should.be.instanceOf(ThemedStyles);
 
-    const A = S.apply(addDarkMode({ border: 'black' }, { border: 'white' }), () => '');
+    const A = S.apply(addDarkMode({ border: 'black' }, { border: 'white' }), noopResolver());
     Object.keys(A).length.should.equal(1);
     A[Object.keys(A)[0]]!.should.eql({
       color: 'red',
@@ -94,7 +94,7 @@ describe('style()', () => {
       }
     }));
 
-    const A = S.apply({}, () => '');
+    const A = S.apply({}, noopResolver());
     A[Object.keys(A)[0]]!.should.eql({
       color: 'red',
       '&:hover': {
@@ -115,7 +115,7 @@ describe('global()', () => {
 
     S.should.be.instanceOf(ThemedStyles);
 
-    const A = S.apply(addDarkMode({ bg: 'white' }, { bg: 'black' }), () => '');
+    const A = S.apply(addDarkMode({ bg: 'white' }, { bg: 'black' }), noopResolver());
     A['@global']!.should.eql({
       background: 'white',
       'html.--dark &': { background: 'black' },
@@ -136,7 +136,7 @@ describe('keyframes()', () => {
     }));
 
     K.should.be.instanceOf(ThemedStyles);
-    const A = K.apply({ x: 42 }, () => '');
+    const A = K.apply({ x: 42 }, noopResolver());
     const key = Object.keys(A)[0];
     key.startsWith('@keyframes').should.be.true;
     A[key]!.should.eql({

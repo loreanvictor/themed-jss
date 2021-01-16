@@ -1,12 +1,24 @@
 import { StyleSheet } from 'jss';
 
-import { ThemedKeyframes, ThemedStyle, ThemedStyles } from './styles';
+import { makeResolver, StyleClassResolver, ThemedKeyframes, ThemedStyle, ThemedStyles } from './styles';
 
 
 export class Theme<ThemeType = any> {
   readonly sheets: {[id: string]: StyleSheet} = {};
+  readonly attachedResolver: StyleClassResolver<ThemeType>;
+  readonly detachedResolver: StyleClassResolver<ThemeType>;
 
-  constructor(readonly theme: ThemeType) {}
+  constructor(readonly theme: ThemeType) {
+    this.attachedResolver = makeResolver(
+      ref => this._resolve(ref, true),
+      ref => ref.apply(theme, this.attachedResolver)['scoped']
+    );
+
+    this.detachedResolver = makeResolver(
+      ref => this._resolve(ref, false),
+      ref => ref.apply(theme, this.detachedResolver)['scoped']
+    );
+  }
 
   _resolve(ref: ThemedStyle<ThemeType> | ThemedKeyframes<ThemeType>, attach: boolean) {
     if (ref instanceof ThemedKeyframes) {
@@ -16,9 +28,13 @@ export class Theme<ThemeType = any> {
     }
   }
 
+  resolver(attach: boolean) {
+    return attach ? this.attachedResolver : this.detachedResolver;
+  }
+
   add(styles: ThemedStyles<ThemeType>, attach = true) {
     if (!(styles.id in this.sheets)) {
-      const sheet = styles.stylesheet(this.theme, s => this._resolve(s, attach));
+      const sheet = styles.stylesheet(this.theme, this.resolver(attach));
       if (attach) {
         sheet.attach();
       }
