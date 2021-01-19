@@ -1,5 +1,5 @@
 import { Styles } from 'jss';
-import { inDarkMode } from './helper';
+import { attachDarkMode, inDarkMode } from './helper';
 import { WithDarkMode } from './support';
 
 
@@ -64,6 +64,6 @@ function applyDiff(source: Partial<Styles>, override: Partial<Styles>) {
   });
 
   if (Object.keys(dm).length > 0) {
-    Object.assign(source, inDarkMode(dm));
+    attachDarkMode(inDarkMode(dm), source);
   }
 }

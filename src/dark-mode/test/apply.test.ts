@@ -1,5 +1,6 @@
 import { should } from 'chai';
 import { applyDarkMode } from '../apply';
+import { inDarkMode } from '../helper';
 import { addDarkMode } from '../support';
 
 should();
@@ -71,6 +72,27 @@ describe('applyDarkMode()', () => {
       '@media (prefers-color-scheme: dark)': {
         'html:not(.--dark-mode-override) &': {
           x: 'blue'
+        }
+      }
+    });
+  });
+
+  it('should properly apply dark mode aware props alongside dark mode specific props.', () => {
+    const T = addDarkMode({ A: 'red' }, { A: 'blue' });
+    const D = applyDarkMode(T, theme => ({
+      x: theme.A,
+      ...inDarkMode({
+        y: 42,
+      })
+    }));
+
+    D.should.eql({
+      x: 'red',
+      'html.--dark &': { x: 'blue', y: 42 },
+      '@media (prefers-color-scheme: dark)': {
+        'html:not(.--dark-mode-override) &': {
+          x: 'blue',
+          y: 42,
         }
       }
     });

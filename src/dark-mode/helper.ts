@@ -25,3 +25,30 @@ export function inDarkMode(style: Partial<JssStyle>) {
     }
   };
 }
+
+
+export function attachDarkMode(style: any, source: any) {
+  const dms = `html.${DarkModeClass} &`;
+  const dmmq = `@media ${DarkModeMediaQuery}`;
+  const dmmqs = `html:not(.${DarkModeOverrideClass}) &`;
+
+  if (dms in source) {
+    Object.assign(source[dms], style[dms]);
+  } else {
+    source[dms] = style[dms];
+  }
+
+  if (dmmq in source) {
+    const mq = source[dmmq];
+    // istanbul ignore else
+    if (dmmqs in mq) {
+      Object.assign(mq[dmmqs], style[dmmq][dmmqs]);
+    } else {
+      mq[dmmqs] = style;
+    }
+  } else {
+    source[dmmq] = {
+      [dmmqs]: style[dmmq][dmmqs]
+    };
+  }
+}
