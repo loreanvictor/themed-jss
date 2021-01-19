@@ -1,3 +1,4 @@
 export {
-  DarkMode, DarkModeState, addDarkMode, supportsDarkMode
+  DarkMode, DarkModeState, addDarkMode, supportsDarkMode,
+  inDarkMode, inLightMode
 } from '../dist/es6/dark-mode';
